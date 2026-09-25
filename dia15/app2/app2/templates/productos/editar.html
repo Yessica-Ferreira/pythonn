@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar producto | StockFlow</title>
+    <link rel="stylesheet" href="{% static 'app2/css/styles.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <a href="{% url 'productos_index' %}" class="brand" aria-label="Ir al listado de productos">
+            <span class="brand-mark">SF</span>
+            <span>
+                <strong>StockFlow</strong>
+                <small>Gestión de inventario</small>
+            </span>
+        </a>
+
+        <div class="topbar-actions">
+            <a href="{% url 'productos_index' %}" class="btn btn-ghost">← Volver al listado</a>
+        </div>
+    </header>
+
+    <main class="edit-shell">
+        <section class="page-heading">
+            <div>
+                <span class="eyebrow">Actualización de datos</span>
+                <h1>Editar producto</h1>
+                <p>Modifica la información del producto y guarda los cambios.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <div>
+                    <h2>Información del producto</h2>
+                    <p>Completa los datos necesarios para actualizar el registro.</p>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="product-code-panel">
+                    <span>Código de barra</span>
+                    <strong class="code-value">{{ producto.codigo_barra }}</strong>
+                </div>
+
+                <form method="post" class="edit-form">
+                    {% csrf_token %}
+
+                    <div class="form-grid">
+                        <div class="field field-full">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" id="descripcion" name="descripcion" value="{{ producto.descripcion }}" maxlength="200" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="precio_costo">Precio de costo</label>
+                            <input type="number" id="precio_costo" name="precio_costo" value="{{ producto.precio_costo }}" min="0" step="1" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="precio_venta">Precio de venta</label>
+                            <input type="number" id="precio_venta" name="precio_venta" value="{{ producto.precio_venta }}" min="0" step="1" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="iva">IVA</label>
+                            <select id="iva" name="iva" required>
+                                <option value="EXENTO" {% if producto.iva == 'EXENTO' %}selected{% endif %}>Exento</option>
+                                <option value="5" {% if producto.iva == '5' %}selected{% endif %}>5%</option>
+                                <option value="10" {% if producto.iva == '10' %}selected{% endif %}>10%</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" name="stock" value="{{ producto.stock }}" min="0" step="1" required>
+                        </div>
+
+                        <div class="field field-full">
+                            <label for="unidad_medida">Unidad de medida</label>
+                            <select id="unidad_medida" name="unidad_medida" required>
+                                <option value="UNID" {% if producto.unidad_medida == 'UNID' %}selected{% endif %}>Unidades</option>
+                                <option value="kg" {% if producto.unidad_medida == 'kg' %}selected{% endif %}>Kilogramos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <a href="{% url 'productos_index' %}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | Inventario Pro</title>
+    <link rel="stylesheet" href="{% static 'app2/css/styles.css' %}">
+</head>
+<body class="auth-page">
+    <main class="auth-layout">
+        <section class="auth-hero">
+            <div class="auth-brand">
+                <span class="brand-mark">IP</span>
+                <span>Inventario Pro</span>
+            </div>
+
+            <div class="auth-hero-content">
+                <p class="eyebrow">Gestión inteligente</p>
+                <h1>Tu inventario, claro y bajo control.</h1>
+                <p>
+                    Administra productos, precios y existencias desde un solo lugar.
+                </p>
+
+                <ul class="feature-list">
+                    <li>Control de existencias</li>
+                    <li>Precios siempre actualizados</li>
+                    <li>Acceso seguro</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="auth-card">
+            <p class="eyebrow">Bienvenida</p>
+            <h1>Iniciar sesión</h1>
+            <p class="subtitle">Ingresa tus credenciales para acceder al sistema.</p>
+
+            {% if form.errors %}
+                <div class="alert" role="alert">
+                    El usuario o la contraseña no son correctos.
+                </div>
+            {% endif %}
+
+            <form method="post" class="auth-form">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label for="{{ form.username.id_for_label }}">Usuario</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </div>
+
+                <div class="field">
+                    <label for="{{ form.password.id_for_label }}">Contraseña</label>
+                    {{ form.password }}
+                    {{ form.password.errors }}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    Ingresar al sistema
+                </button>
+            </form>
+
+            <p class="auth-note">Acceso exclusivo para usuarios autorizados.</p>
+        </section>
+    </main>
+</body>
+</html>

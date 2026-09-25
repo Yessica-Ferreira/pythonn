@@ -1,0 +1,57 @@
+.img-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 2px rgb(98, 57, 193);
+}
+
+.img-slider {
+    height: 200px;
+    width: auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgb(98, 57, 193);
+}
+
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(43, 25, 86);
+    font-size: 19pt;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26pt;
+    color: rgb(79, 79, 201);
+}
+
+form input,
+form button {
+    width: 200px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid rgb(180, 180, 180);
+}
+
+form button {
+    color: white;
+    background-color: rgba(58, 25, 179, 0.93);
+    border: none;
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+form button:hover {
+    background-color: rgb(49, 49, 231);
+}
+
+form a {
+    display: block;
+    margin-top: 8px;
+    color: rgb(79, 79, 201);
+    text-decoration: none;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
